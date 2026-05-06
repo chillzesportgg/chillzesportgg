@@ -1,110 +1,117 @@
-
-</body>
-</html><!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CHILLZ ESPORT</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
-  margin: 0;
+  margin:0;
   font-family: Arial;
-  color: white;
-  background-color: #05090a;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(0, 212, 199, 0.15), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(0, 212, 199, 0.10), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(0, 212, 199, 0.08), transparent 50%);
+  background:#0f172a;
+  color:white;
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, rgba(0,212,199,0.18), transparent);
-  border-bottom: 1px solid rgba(0,212,199,0.4);
-}
-
-.hero h1 {
-  font-size: 32px;
-  color: #00d4c7;
-}
-
-.hero-logo {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-}
-
-/* NAV */
+/* NAVBAR */
 nav {
-  position: sticky;
-  top: 0;
-  background: #0c1416;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  border-bottom: 2px solid #00d4c7;
+  display:flex;
+  justify-content:space-around;
+  background:#020617;
+  padding:15px;
+  position:sticky;
+  top:0;
 }
 
 nav button {
-  background: none;
-  border: none;
-  color: white;
+  background:none;
+  border:none;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
 }
 
 /* SECTIONS */
-section {
-  display: none;
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
+.section {
+  display:none;
+  padding:20px;
 }
 
-section.active {
-  display: block;
+.active {
+  display:block;
 }
 
-/* CARDS */
+/* CARD */
 .card {
-  background: #10181a;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #1d2a2d;
+  background:#1e293b;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+/* TITLE */
+h1 {
+  text-align:center;
+  color:#38bdf8;
 }
+</style>
+</head>
 
-/* PLAYER */
-.player {
-  background: #0d1517;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #00d4c7;
-  cursor: pointer;
-  text-align: center;
+<body>
+
+<h1>CHILLZ ESPORT</h1>
+
+<nav>
+  <button onclick="show('oyuncular')">Oyuncular</button>
+  <button onclick="show('hakkimizda')">Hakkımızda</button>
+  <button onclick="show('mac')">Canlı Maç</button>
+  <button onclick="show('basarilar')">Başarılar</button>
+</nav>
+
+<!-- OYUNCULAR -->
+<div id="oyuncular" class="section active">
+  <h2>Oyuncular</h2>
+
+  <div class="card">Kamacii</div>
+  <div class="card">Mustafa</div>
+  <div class="card">İonas</div>
+  <div class="card">Dest</div>
+  <div class="card">Natotal</div>
+  <div class="card">DaddyScary</div>
+  <div class="card">Haxelia</div>
+  <div class="card">Deniz</div>
+
+</div>
+
+<!-- HAKKIMIZDA -->
+<div id="hakkimizda" class="section">
+  <h2>Hakkımızda</h2>
+  <p>CHILLZ ESPORTGG, rekabetçi oyunlarda zirveyi hedefleyen profesyonel bir e-spor takımıdır. Disiplin, takım ruhu ve kazanma hırsıyla yoluna devam eder.</p>
+</div>
+
+<!-- CANLI MAÇ -->
+<div id="mac" class="section">
+  <h2>Canlı Maç</h2>
+  <p>Şu anda aktif maç bulunmuyor.</p>
+</div>
+
+<!-- BAŞARILAR -->
+<div id="basarilar" class="section">
+  <h2>Başarılar</h2>
+  <div class="card">🏆 Yakında eklenecek...</div>
+</div>
+
+<script>
+function show(sectionId){
+  let sections = document.querySelectorAll('.section');
+  sections.forEach(sec => sec.classList.remove('active'));
+
+  document.getElementById(sectionId).classList.add('active');
 }
+</script>
 
-/* POPUP */
-.popup {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
+</body>
+</html>
 .popup img {
   max-width: 80%;
   border-radius: 10px;
