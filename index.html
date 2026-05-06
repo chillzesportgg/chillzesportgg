@@ -21,6 +21,7 @@ body {
   font-size:12px;
   font-weight:bold;
   z-index:999;
+  cursor:pointer;
 }
 
 .header {
@@ -68,27 +69,19 @@ nav button {
   color:white;
   font-size:14px;
   cursor:pointer;
-  transition:0.3s;
   margin:5px;
 }
 
 nav button:hover {
   color:#38bdf8;
-  text-shadow:0 0 10px #38bdf8;
 }
 
 .section {
   display:none;
   padding:20px;
-  animation: fade 0.3s;
 }
 
 .active { display:block; }
-
-@keyframes fade {
-  from {opacity:0;}
-  to {opacity:1;}
-}
 
 .grid {
   display:grid;
@@ -138,23 +131,22 @@ button.submit {
   font-weight:bold;
 }
 
-.social {
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:15px;
+.admin-panel {
+  display:none;
+  padding:20px;
 }
 
-.social a {
-  color:#38bdf8;
-  text-decoration:none;
-  font-weight:bold;
+.admin-item {
+  background:#0f172a;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
 }
 
-</style></head><body><div class="version">V1.0.0</div><div class="header">
+</style></head><body><div class="version" onclick="toggleAdmin()">V1.1 PRO</div><div class="header">
   <img src="logo.png" class="logo">
   <h1>CHILLZ ESPORT</h1>  <div class="email">📩 chillzesportgg@gmail.com</div>  <div class="social">
-    <a href="https://www.instagram.com/chillzesportgg?igsh=MXF0YzR0b3N2eTN6" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/chillzesportgg?igsh=MXF0YzR0b3N2eTN6" target="_blank" style="color:#38bdf8">Instagram</a>
   </div>
 </div><nav>
   <button onclick="show('oyuncular')">Oyuncular</button>
@@ -176,9 +168,7 @@ button.submit {
   </div>
 </div><div id="hakkimizda" class="section">
   <h2>Hakkımızda</h2>
-  <div class="card">
-    CHILLZ ESPORTGG rekabetçi e-spor alanında zirveyi hedefleyen profesyonel takımdır.
-  </div>
+  <div class="card">CHILLZ ESPORTGG profesyonel e-spor takımıdır.</div>
 </div><div id="mac" class="section">
   <h2>Canlı Maç</h2>
   <div class="card">🔥 Şu anda aktif maç yok</div>
@@ -188,116 +178,58 @@ button.submit {
 </div><div id="katil" class="section">
   <h2>Takıma Katıl</h2>
   <div class="card">
-    <form action="https://formspree.io/f/REPLACE_THIS" method="POST">
-      <input name="isim" placeholder="Oyuncu Adı" required>
-      <input name="rank" placeholder="Rank / Seviye" required>
-      <textarea name="mesaj" placeholder="Neden katılmak istiyorsun?" required></textarea>
-      <button class="submit" type="submit">Başvur</button>
-    </form>
+    <input id="isim" placeholder="Oyuncu Adı">
+    <input id="rank" placeholder="Rank / Seviye">
+    <textarea id="mesaj" placeholder="Neden katılmak istiyorsun?"></textarea>
+    <button class="submit" onclick="sendMail()">Başvur</button>
   </div>
+</div><div id="admin" class="admin-panel">
+  <h2>Admin Panel</h2>
+  <div id="list"></div>
 </div><script>
+let adminOpen = false;
+
 function show(sectionId){
-  let sections = document.querySelectorAll('.section');
-  sections.forEach(sec => sec.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(sectionId).classList.add('active');
 }
-</script></body>
-</html>.card:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 15px #38bdf8;
+
+function sendMail(){
+  let isim = document.getElementById('isim').value;
+  let rank = document.getElementById('rank').value;
+  let mesaj = document.getElementById('mesaj').value;
+
+  let mail = "mailto:chillzesportgg@gmail.com"
+  + "?subject=CHILLZ ESPORT BAŞVURU - " + encodeURIComponent(isim)
+  + "&body="
+  + "Oyuncu Adı: " + encodeURIComponent(isim) + "%0D%0A"
+  + "Rank: " + encodeURIComponent(rank) + "%0D%0A"
+  + "Sebep: " + encodeURIComponent(mesaj);
+
+  let data = JSON.parse(localStorage.getItem('apps')||'[]');
+  data.push({isim,rank,mesaj});
+  localStorage.setItem('apps', JSON.stringify(data));
+
+  window.location.href = mail;
 }
 
-.badge {
-  background:#38bdf8;
-  color:black;
-  padding:5px 10px;
-  border-radius:8px;
-  font-size:12px;
-  display:inline-block;
-  margin-top:10px;
-}
+function toggleAdmin(){
+  adminOpen = !adminOpen;
+  if(adminOpen){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById('admin').style.display='block';
 
-input, textarea {
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  border-radius:10px;
-  border:none;
-}
+    let list = document.getElementById('list');
+    list.innerHTML='';
 
-button.submit {
-  margin-top:10px;
-  padding:10px;
-  width:100%;
-  border:none;
-  border-radius:10px;
-  background:#38bdf8;
-  cursor:pointer;
-  font-weight:bold;
-}
+    let data = JSON.parse(localStorage.getItem('apps')||'[]');
 
-.social {
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:15px;
-}
-
-.social a {
-  color:#38bdf8;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-</style></head><body><div class="version">V1.0.0</div><div class="header">
-  <img src="logo.png" class="logo">
-  <h1>CHILLZ ESPORT</h1>  <div class="email">📩 chillzesportgg@gmail.com</div>  <div class="social">
-    <a href="https://www.instagram.com/chillzesportgg?igsh=MXF0YzR0b3N2eTN6" target="_blank">Instagram</a>
-  </div>
-</div><nav>
-  <button onclick="show('oyuncular')">Oyuncular</button>
-  <button onclick="show('hakkimizda')">Hakkımızda</button>
-  <button onclick="show('mac')">Canlı Maç</button>
-  <button onclick="show('basarilar')">Başarılar</button>
-  <button onclick="show('katil')">Takıma Katıl</button>
-</nav><div id="oyuncular" class="section active">
-  <h2>Oyuncular</h2>
-  <div class="grid">
-    <div class="card">Kamacii<div class="badge">Pro</div></div>
-    <div class="card">Mustafa<div class="badge">Pro</div></div>
-    <div class="card">İonas<div class="badge">Pro</div></div>
-    <div class="card">Dest<div class="badge">Pro</div></div>
-    <div class="card">Natotal<div class="badge">Pro</div></div>
-    <div class="card">DaddyScary<div class="badge">Pro</div></div>
-    <div class="card">Haxelia<div class="badge">Pro</div></div>
-    <div class="card">Deniz<div class="badge">Pro</div></div>
-  </div>
-</div><div id="hakkimizda" class="section">
-  <h2>Hakkımızda</h2>
-  <div class="card">
-    CHILLZ ESPORTGG rekabetçi e-spor alanında zirveyi hedefleyen profesyonel takımdır.
-  </div>
-</div><div id="mac" class="section">
-  <h2>Canlı Maç</h2>
-  <div class="card">🔥 Şu anda aktif maç yok</div>
-</div><div id="basarilar" class="section">
-  <h2>Başarılar</h2>
-  <div class="card">🏆 Yakında turnuva zaferleri burada!</div>
-</div><div id="katil" class="section">
-  <h2>Takıma Katıl</h2>
-  <div class="card">
-    <form action="https://formspree.io/f/REPLACE_THIS" method="POST">
-      <input name="isim" placeholder="Oyuncu Adı" required>
-      <input name="rank" placeholder="Rank / Seviye" required>
-      <textarea name="mesaj" placeholder="Neden katılmak istiyorsun?" required></textarea>
-      <button class="submit" type="submit">Başvur</button>
-    </form>
-  </div>
-</div><script>
-function show(sectionId){
-  let sections = document.querySelectorAll('.section');
-  sections.forEach(sec => sec.classList.remove('active'));
-  document.getElementById(sectionId).classList.add('active');
+    data.forEach((d,i)=>{
+      list.innerHTML += `<div class='admin-item'>#${i+1}<br>Ad: ${d.isim}<br>Rank: ${d.rank}<br>Mesaj: ${d.mesaj}</div>`;
+    });
+  } else {
+    document.getElementById('admin').style.display='none';
+  }
 }
 </script></body>
 </html>
