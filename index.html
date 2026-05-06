@@ -202,4 +202,102 @@ function show(sectionId){
   document.getElementById(sectionId).classList.add('active');
 }
 </script></body>
+</html>.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 15px #38bdf8;
+}
+
+.badge {
+  background:#38bdf8;
+  color:black;
+  padding:5px 10px;
+  border-radius:8px;
+  font-size:12px;
+  display:inline-block;
+  margin-top:10px;
+}
+
+input, textarea {
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  border:none;
+}
+
+button.submit {
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  background:#38bdf8;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.social {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:15px;
+}
+
+.social a {
+  color:#38bdf8;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+</style></head><body><div class="version">V1.0.0</div><div class="header">
+  <img src="logo.png" class="logo">
+  <h1>CHILLZ ESPORT</h1>  <div class="email">📩 chillzesportgg@gmail.com</div>  <div class="social">
+    <a href="https://www.instagram.com/chillzesportgg?igsh=MXF0YzR0b3N2eTN6" target="_blank">Instagram</a>
+  </div>
+</div><nav>
+  <button onclick="show('oyuncular')">Oyuncular</button>
+  <button onclick="show('hakkimizda')">Hakkımızda</button>
+  <button onclick="show('mac')">Canlı Maç</button>
+  <button onclick="show('basarilar')">Başarılar</button>
+  <button onclick="show('katil')">Takıma Katıl</button>
+</nav><div id="oyuncular" class="section active">
+  <h2>Oyuncular</h2>
+  <div class="grid">
+    <div class="card">Kamacii<div class="badge">Pro</div></div>
+    <div class="card">Mustafa<div class="badge">Pro</div></div>
+    <div class="card">İonas<div class="badge">Pro</div></div>
+    <div class="card">Dest<div class="badge">Pro</div></div>
+    <div class="card">Natotal<div class="badge">Pro</div></div>
+    <div class="card">DaddyScary<div class="badge">Pro</div></div>
+    <div class="card">Haxelia<div class="badge">Pro</div></div>
+    <div class="card">Deniz<div class="badge">Pro</div></div>
+  </div>
+</div><div id="hakkimizda" class="section">
+  <h2>Hakkımızda</h2>
+  <div class="card">
+    CHILLZ ESPORTGG rekabetçi e-spor alanında zirveyi hedefleyen profesyonel takımdır.
+  </div>
+</div><div id="mac" class="section">
+  <h2>Canlı Maç</h2>
+  <div class="card">🔥 Şu anda aktif maç yok</div>
+</div><div id="basarilar" class="section">
+  <h2>Başarılar</h2>
+  <div class="card">🏆 Yakında turnuva zaferleri burada!</div>
+</div><div id="katil" class="section">
+  <h2>Takıma Katıl</h2>
+  <div class="card">
+    <form action="https://formspree.io/f/REPLACE_THIS" method="POST">
+      <input name="isim" placeholder="Oyuncu Adı" required>
+      <input name="rank" placeholder="Rank / Seviye" required>
+      <textarea name="mesaj" placeholder="Neden katılmak istiyorsun?" required></textarea>
+      <button class="submit" type="submit">Başvur</button>
+    </form>
+  </div>
+</div><script>
+function show(sectionId){
+  let sections = document.querySelectorAll('.section');
+  sections.forEach(sec => sec.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+}
+</script></body>
 </html>
