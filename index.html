@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!DOCTYPE html><html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHILLZ ESPORT</title>
-
-<style>
+<title>CHILLZ ESPORT</title><style>
 body {
   margin:0;
   font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #020617, #0f172a);
   color:white;
+}
+
+/* VERSION */
+.version {
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:#38bdf8;
+  color:black;
+  padding:5px 10px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:bold;
+  z-index:999;
 }
 
 /* HEADER */
@@ -40,6 +51,7 @@ h1 {
 nav {
   display:flex;
   justify-content:space-around;
+  flex-wrap:wrap;
   background:#020617;
   padding:15px;
   position:sticky;
@@ -54,6 +66,7 @@ nav button {
   font-size:14px;
   cursor:pointer;
   transition:0.3s;
+  margin:5px;
 }
 
 nav button:hover {
@@ -68,9 +81,7 @@ nav button:hover {
   animation: fade 0.3s;
 }
 
-.active {
-  display:block;
-}
+.active { display:block; }
 
 @keyframes fade {
   from {opacity:0;}
@@ -98,13 +109,102 @@ nav button:hover {
   box-shadow:0 0 15px #38bdf8;
 }
 
-/* BADGE */
 .badge {
   background:#38bdf8;
   color:black;
   padding:5px 10px;
   border-radius:8px;
   font-size:12px;
+  display:inline-block;
+  margin-top:10px;
+}
+
+/* FORM */
+input, textarea {
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  border:none;
+}
+
+button.submit {
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  background:#38bdf8;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* SOCIAL */
+.social {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:15px;
+}
+
+.social a {
+  color:#38bdf8;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+</style></head><body><div class="version">V1.0.0</div><div class="header">
+  <img src="logo.png" class="logo">
+  <h1>CHILLZ ESPORT</h1>  <div class="social">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Discord</a>
+  </div>
+</div><nav>
+  <button onclick="show('oyuncular')">Oyuncular</button>
+  <button onclick="show('hakkimizda')">Hakkımızda</button>
+  <button onclick="show('mac')">Canlı Maç</button>
+  <button onclick="show('basarilar')">Başarılar</button>
+  <button onclick="show('katil')">Takıma Katıl</button>
+</nav><!-- OYUNCULAR --><div id="oyuncular" class="section active">
+  <h2>Oyuncular</h2>
+  <div class="grid">
+    <div class="card">Kamacii<div class="badge">Pro</div></div>
+    <div class="card">Mustafa<div class="badge">Pro</div></div>
+    <div class="card">İonas<div class="badge">Pro</div></div>
+    <div class="card">Dest<div class="badge">Pro</div></div>
+    <div class="card">Natotal<div class="badge">Pro</div></div>
+    <div class="card">DaddyScary<div class="badge">Pro</div></div>
+    <div class="card">Haxelia<div class="badge">Pro</div></div>
+    <div class="card">Deniz<div class="badge">Pro</div></div>
+  </div>
+</div><!-- HAKKIMIZDA --><div id="hakkimizda" class="section">
+  <h2>Hakkımızda</h2>
+  <div class="card">
+    CHILLZ ESPORTGG rekabetçi e-spor alanında zirveyi hedefleyen profesyonel takımdır.
+  </div>
+</div><!-- CANLI MAÇ --><div id="mac" class="section">
+  <h2>Canlı Maç</h2>
+  <div class="card">🔥 Şu anda aktif maç yok</div>
+</div><!-- BAŞARILAR --><div id="basarilar" class="section">
+  <h2>Başarılar</h2>
+  <div class="card">🏆 Yakında turnuva zaferleri burada!</div>
+</div><!-- KATIL --><div id="katil" class="section">
+  <h2>Takıma Katıl</h2>
+  <div class="card">
+    <input placeholder="Oyuncu Adı">
+    <input placeholder="Rank / Seviye">
+    <textarea placeholder="Neden katılmak istiyorsun?"></textarea>
+    <button class="submit">Başvur</button>
+  </div>
+</div><script>
+function show(sectionId){
+  let sections = document.querySelectorAll('.section');
+  sections.forEach(sec => sec.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+}
+</script></body>
+</html>  font-size:12px;
   display:inline-block;
   margin-top:10px;
 }
